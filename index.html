@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>努小搜索 - 纯净无广告搜索</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+body{background:#f7f8fa;color:#333;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-top:60px;padding-left:16px;padding-right:16px}
+.container{max-width:720px;width:100%;margin-top:40px}
+.logo{font-size:28px;font-weight:700;color:#1677ff;text-align:center;margin-bottom:12px}
+.desc{text-align:center;color:#666;margin-bottom:40px;font-size:15px}
+.search-box{position:relative;width:100%}
+.search-input{width:100%;height:50px;padding:0 20px;font-size:16px;border:1px solid #e5e6eb;border-radius:25px;outline:none;transition:all .2s}
+.search-input:focus{border-color:#1677ff;box-shadow:0 0 0 3px rgba(22,119,255,0.15)}
+.search-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);height:38px;width:70px;background:#1677ff;color:#fff;border:none;border-radius:19px;cursor:pointer;font-size:15px}
+.search-btn:hover{background:#0f6adc}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:20px}
+.tag{padding:6px 12px;background:#fff;border:1px solid #e5e6eb;border-radius:16px;font-size:13px;color:#666;cursor:pointer}
+.tag:hover{border-color:#1677ff;color:#1677ff}
+.footer{margin-top:auto;padding:30px 0;text-align:center;font-size:13px;color:#999}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="logo">努小搜索</div>
+<div class="desc">只搜官方网站，无广告、无仿站、无推广</div>
+<div class="search-box">
+<input type="text" class="search-input" id="kw" placeholder="输入名称，一键查找官网">
+<button class="search-btn" onclick="search()">搜索</button>
+</div>
+<div class="tags">
+<div class="tag" onclick="go('政府')">政府</div>
+<div class="tag" onclick="go('银行')">银行</div>
+<div class="tag" onclick="go('大学')">大学</div>
+<div class="tag" onclick="go('企业')">企业</div>
+<div class="tag" onclick="go('医院')">医院</div>
+</div>
+</div>
+<div class="footer">© 2026 努小搜索 · 纯净搜索</div>
+<script>
+const rule = "site:gov.cn OR site:com.cn OR site:cn OR site:org OR site:net -广告 -推广 -论坛 -博客 -下载 -破解";
+function search() {
+const kw = document.getElementById("kw").value.trim();
+if (!kw) return;
+window.open("https://www.baidu.com/s?wd=" + encodeURIComponent(kw + " " + rule));
+}
+function go(t) {
+document.getElementById("kw").value = t;
+search();
+}
+document.getElementById("kw").addEventListener("keypress", function (e) {
+if (e.key === "Enter") search();
+});
+</script>
+</body>
+</html>
